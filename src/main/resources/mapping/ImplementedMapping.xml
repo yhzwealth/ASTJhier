@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.fudan.selab.mapper.ImplementedMapper">
+
+    <insert id="insertAll" parameterType="java.util.List">
+        insert into `implemented` values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (#{item.typeName},#{item.interfaceName})
+        </foreach>
+        ON CONFLICT(`type_name`,`interface_name`) DO UPDATE SET `type_name` = `type_name`;
+    </insert>
+</mapper>

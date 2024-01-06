@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.fudan.selab.mapper.InitMapper">
+
+    <insert id="createExtendedTable">
+        CREATE TABLE IF NOT EXISTS `extended` (
+            `type_name` varchar(150) NOT NULL,
+            `super_class_name` varchar(150) NOT NULL,
+            PRIMARY KEY (`type_name`,`super_class_name`)
+            );
+    </insert>
+
+    <insert id="createFieldTable">
+        CREATE TABLE IF NOT EXISTS `field` (
+            `class_name` varchar(150) NOT NULL,
+            `modifier` varchar(20) DEFAULT NULL,
+            `is_static` tinyint(1) DEFAULT NULL,
+            `type_name` varchar(150) NOT NULL,
+            `level` int DEFAULT '0',
+            `name` varchar(100) NOT NULL,
+            PRIMARY KEY (`class_name`,`name`)
+            );
+    </insert>
+    <insert id="createImplementedTable">
+        CREATE TABLE IF NOT EXISTS `implemented` (
+            `type_name` varchar(150) NOT NULL,
+            `interface_name` varchar(150) NOT NULL,
+            PRIMARY KEY (`type_name`,`interface_name`)
+            );
+    </insert>
+    <insert id="createMethodTable">
+        CREATE TABLE IF NOT EXISTS `method` (
+            `modifier` varchar(10) NOT NULL,
+            `class_name` varchar(150) NOT NULL,
+            `return_type` varchar(150) DEFAULT NULL,
+            `name` varchar(511) NOT NULL,
+            `code` longtext,
+            `is_static` tinyint(1) DEFAULT '0',
+            `is_abstract` tinyint(1) DEFAULT '0',
+            `is_constructor` tinyint(1) DEFAULT '0',
+            `is_builder` tinyint(1) DEFAULT '0',
+            PRIMARY KEY (`class_name`,`name`)
+            );
+    </insert>
+    <insert id="createParameterTable">
+        CREATE TABLE IF NOT EXISTS `parameter` (
+            `class_name` varchar(150) NOT NULL,
+            `method_name` varchar(511) NOT NULL,
+            `type_name` varchar(150) DEFAULT NULL,
+            `level` int DEFAULT '0',
+            `name` varchar(100) NOT NULL,
+            PRIMARY KEY (`class_name`,`method_name`,`name`)
+            );
+    </insert>
+    <insert id="createTypeTable">
+        CREATE TABLE IF NOT EXISTS `type` (
+            `fully_qualified_class_name` varchar(150) NOT NULL,
+            `name` varchar(50) NOT NULL,
+            `package_name` varchar(150) DEFAULT NULL,
+            `is_interface` tinyint(1) DEFAULT NULL,
+            `is_abstract` tinyint(1) DEFAULT NULL,
+            PRIMARY KEY (`fully_qualified_class_name`)
+            );
+    </insert>
+    <update id="setLike">
+        PRAGMA case_sensitive_like = 1;
+    </update>
+</mapper>
