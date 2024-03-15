@@ -47,7 +47,7 @@ public class Global {
 
         StringBuilder sb = new StringBuilder();
         results._3().forEach(r -> sb.append(r).append(":"));
-        FileUtils.writeFile(CLASS_PATH, sb.deleteCharAt(sb.length() - 1).toString());
+        FileUtils.writeFile(CLASS_PATH, sb.deleteCharAt(sb.length() - 1).toString(), false);
 
         List<String> rootPkgPaths = ZipUtils.unzipSourceJars(foundSrcs);
         List<String> pkgNames = FileUtils.getPkgName(rootPkgPaths);

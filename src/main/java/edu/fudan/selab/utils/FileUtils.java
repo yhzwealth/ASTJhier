@@ -74,10 +74,10 @@ public class FileUtils {
         return line.toString();
     }
 
-    public static void writeFile(String url, String content) {
+    public static void writeFile(String url, String content, boolean append) {
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(url, false);
+            fos = new FileOutputStream(url, append);
             byte[] data = content.getBytes(StandardCharsets.UTF_8);
             fos.write(data);
         } catch (Exception e) {

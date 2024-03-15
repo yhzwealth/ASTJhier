@@ -9,11 +9,11 @@ import org.junit.Test;
 public class AppTest {
     @Test
     public void wholeProcessTest() {
-        JtypeProvider.v1.initialize("com.github.javaparser:javaparser-core:3.25.4");
+        JtypeProvider.v1.initialize("net.time4j:time4j-base:5.9.3");
         MethodGraph mg1 = JtypeProvider.v1.getMethodGraphBySignature("com.github.javaparser.TokenRange::withBegin(JavaToken)");
         String json1 = JtypeProvider.v1.toJSONString(mg1);
 
-        FileUtils.writeFile("graph.json", json1);
+        FileUtils.writeFile("graph.json", json1, false);
         assert json1.length() > 0;
 
     }

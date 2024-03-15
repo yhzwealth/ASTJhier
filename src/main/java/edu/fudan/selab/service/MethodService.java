@@ -44,7 +44,7 @@ public class MethodService {
             String srcPath,
             String signature)
             throws IllegalArgumentException {
-        Global.initByPkgJarPaths(List.of(DECOMPILED_SOURCE_ROOT), List.of());
+//        Global.initByPkgJarPaths(List.of(DECOMPILED_SOURCE_ROOT), List.of());
         String regex = "^([\\w.]+)::([\\w]+)\\(([^)]*)\\)$";
         // Compile the regex pattern
         Pattern pattern = Pattern.compile(regex);
